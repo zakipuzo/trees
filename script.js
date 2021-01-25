@@ -4,6 +4,9 @@
 
 $(document).ready(function () {
 
+  $("#parent").select2();
+
+  $(".nav-link").addClass("active");
 
   $("#addnode").on("submit", function () {
     $(".btnsubmit").hide();
@@ -31,38 +34,42 @@ $(document).ready(function () {
     success: function (trees) {
       let p = displayTrees(JSON.parse(trees));
 
-      var res="<ul>";
+      var res = "<ul>";
       p.forEach(NODES => {
 
-       
+
 
         // we havva array in array; WE COULD HAVE MANY TREE SEPERATLY
         // NODES  FROM PARENT TO CHILD
-       
+
         NODES.forEach((el, index) => {
-        
-          let c=-1;
-          let count=char_count(el.node, '.');
 
-          
-           let spaces= numberSpaces(el);
+          let c = -1;
+          let count = char_count(el.node, '.');
+          /*
+                    for (let index = 0; index < count; index++) {
+                      $("#Preview").append("<div col-"+(index+1)+">sss</div>");
+                      
+                    }*/
 
-           spaces.forEach(element => {
-           
-            $("#Preview").append(element);
-           });
-           $("#Preview").append(el.name+"<br>");
-          
+          let spaces = numberSpaces(el);
+
+          spaces.forEach(sp => {
+
+            $("#Preview").append("-");
+          });
+          $("#Preview").append(el.name + "<br>");
+
         });
-       
 
-         
-       
+
+
+
       });
 
 
-      
-    
+
+
     },
     error: function (error) {
       alert(error);
@@ -117,14 +124,14 @@ $(document).ready(function () {
   function numberSpaces(node) {
     var number = [];
 
-
-    for (let i = 0; i < char_count(node.node, '.') * 4; i++) {
-      number.push("&nbsp;");
+    let spacenbr = char_count(node.node, '.') * 4;
+    for (let i = 0; i < spacenbr; i++) {
+        number.push("&nbsp;");
     }
     return number;
   }
 
-  /*
+/*
   var data = {
     menu: [{
       name: 'Women Cloth',
@@ -136,31 +143,31 @@ $(document).ready(function () {
       }, {
         name: 'Liverpool',
         link: '0-1',
-          sub: [{
-        name: 'Arsenal',
-        link: '0-0',
-        sub: null
-      }, {
-        name: 'xxx',
-        link: '0-1',
         sub: [{
-          name: 'aa',
+          name: 'Arsenal',
           link: '0-0',
           sub: null
         }, {
-          name: 'www',
+          name: 'xxx',
           link: '0-1',
-          sub: null
+          sub: [{
+            name: 'aa',
+            link: '0-0',
+            sub: null
+          }, {
+            name: 'www',
+            link: '0-1',
+            sub: null
+          }, {
+            name: 'Manchester United',
+            link: '0-2',
+            sub: null
+          }]
         }, {
           name: 'Manchester United',
           link: '0-2',
           sub: null
         }]
-      }, {
-        name: 'Manchester United',
-        link: '0-2',
-        sub: null
-      }]
       }, {
         name: 'Manchester United',
         link: '0-2',
@@ -184,9 +191,9 @@ $(document).ready(function () {
       }]
     }]
   };
-  
-  var getMenuItem = function(itemData) {
-  
+
+  var getMenuItem = function (itemData) {
+
     var item = $("<li>", {
       class: 'has-children',
       id: itemData.id
@@ -196,61 +203,32 @@ $(document).ready(function () {
         html: itemData.name,
         id: itemData.id + '-links',
       }));
-  
-  
+
+
     if (itemData.sub) {
       //Add UL once only
-      var subList = $("<ul>", {
-        class: 'secondary-dropdown',
-      }); 
-      //Append go back
-     /* var goBack = $("<li>", {}).append(
-        $("<a>", {
-          href: '',
-          html: 'Go back',
-          class: 'go-back',
-        }));
-      //Append go back
-      subList.append(goBack);*/
+      
+      sublistnode(item, itemData.sub);
 
-      /**
-      $.each(itemData.sub, function(index, data) {
-        //Sub menu
-        var subMenuItem = $("<li>", {
-          class: 'has-icon'
-        }).append(
-          $("<a>", {
-            href: data.link,
-            html: data.name,
-            class: 'submenu-title',
-          }));
-
-          if(data.sub){
-            sublistnode(subList,itemData.sub);
-          }
-  
-        subList.append(subMenuItem);
-      });
-  
-      item.append(subList);
+ 
     }
     return item;
   };
-  
-  
+
+
   var $menu = $("#Menu");
-  $.each(data.menu, function(index, data) {
+  $.each(data.menu, function (index, data) {
     $menu.append(getMenuItem(data));
   });
 
 
-  function sublistnode(subList,sub){
-     //Add UL once only
-     var subListX = $("<ul>", {
-      class: 'secondary-dropdown',
-    }); 
+  function sublistnode(item, sub ) {
+    //Add UL once only
+    var subListX = $("<ul>", {
+      class: 'secondakry-dropdown',
+    });
 
-    $.each(sub, function(index, data) {
+    $.each(sub, function (index, data) {
       //Sub menu
       var subMenuItem = $("<li>", {
         class: 'has-icon'
@@ -261,15 +239,27 @@ $(document).ready(function () {
           class: 'submenu-title',
         }));
 
-        if(data.sub){
-         return  sublistnode(subList,data.sub);
-        }
+      if (data.sub) {
+        return sublistnode(item, data.sub);
+      }
 
-        subListX.append(subMenuItem);
+      subListX.append(subMenuItem);
     });
-
+item.append(subListX);
   }
-
-  subList.append(subListX);*/
+*/
+  
 
 });
+
+
+
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}

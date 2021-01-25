@@ -6,6 +6,7 @@ class Tree
     public $name;
     public $parent;
     public $node;
+    public $isquestion;
     function __construct($id, $name)
     {
         $this->id = $id;
@@ -19,5 +20,9 @@ class Tree
     public function setNode($node)
     {
         $this->node = $node;
+    }
+    public function setIsQuestion($isquestion)
+    {
+        $this->isquestion = $isquestion;
     }
 }

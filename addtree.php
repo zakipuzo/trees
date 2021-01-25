@@ -10,10 +10,25 @@ if (isset($_POST["name"], $_POST["parent"])) {
     $name = $_POST["name"];
     $parent = $_POST["parent"];
     //VALIDATION todo
+
+    $isquestion= $_POST["isquestion"];
     
+
+    echo "<h1>".$_POST["isquestion"]."</h1>";
+  
     $tree = new Tree(0, $name);
 
     $tree->setParent($parent);
+    if(isset($_POST["isquestion"])){
+        
+        $tree->setIsQuestion(1);
+    }
+    else{
+        $tree->setIsQuestion(0);
+    }
+   
+
+   
 
     $res=$dao->add($tree);
 
@@ -31,17 +46,17 @@ include("header.php");
 
 <form id="addnode" method="POST" name="addsheep">
     <div class="form-group">
-        <label for="name">Nom:</label>
-        <input id="name" type="text" name="name" class="form-control" required />
+        <label for="name">Nom du noeud:</label>
+        <input  id="name" type="text" name="name" class="form-control" required />
     </div>
     
 
     <div class="form-group">
-    <label for="parent">Parent:</label>
+    <label for="parent">Noeud parent:</label>
     <select id="parent" name="parent" class="form-control">
     <?php
         
-            echo "<option value='0'>Aucun arbre parent</option>";
+            echo "<option value='0'>Aucun noeud parent</option>";
         
         
         foreach ($arbres as $key => $value) {
@@ -49,6 +64,12 @@ include("header.php");
         }
         ?>
     </select>
+
+
+    </div>
+    <div class="form-group">
+        <label for="isquestion">Cocher si c'est une question ou un indicateur pour ne pas l'afficher à la recherche:</label><br>
+        <input id="isquestion" type="checkbox" name="isquestion" style="height: 40px"   />
     </div>
     <input   type="submit" value="Ajouter" class="btn btn-primary btnsubmit">
 
