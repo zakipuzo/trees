@@ -72,7 +72,7 @@ ul, .myUL {
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="tree.php">Arbre</a>
+      <a class="nav-link" href="arbre.php">Arbre</a>
     </li> 
     <li class="nav-item">
       <a class="nav-link" href="addtree.php">+Nouveau</a>
