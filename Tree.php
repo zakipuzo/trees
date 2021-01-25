@@ -11,8 +11,13 @@ class Tree
         $this->id = $id;
         $this->name = $name;
     }
+    
     public function setParent($parent)
     {
         $this->parent = $parent;
+    }
+    public function setNode($node)
+    {
+        $this->node = $node;
     }
 }

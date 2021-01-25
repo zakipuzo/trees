@@ -9,9 +9,10 @@ class Connection{
     {
 
         try{
+            
             $this->PDOConnection=new PDO("mysql:host=$this->servername;dbname=arbresdb",$this->username,$this->psw);
             $this->PDOConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-           echo "conneted";
+          // echo "conneted";
         }catch(PDOException $e){
             echo "Database connection failed ".$e->getMessage();
         }

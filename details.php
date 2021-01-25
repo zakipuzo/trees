@@ -31,7 +31,6 @@ if(isset($_GET["added"])){
 
    <table id="example" class="display table" style="width:100%">
       <thead> 
-      <th>node</th>
       <th>Nom</th>
       <th>Parent</th>
       <th></th>
@@ -40,19 +39,13 @@ if(isset($_GET["added"])){
       <?php
       
    foreach ($arbres as $key => $value) {
-      echo "<tr><td>" . $value->node. "</td><td>" . $value->name. "</td><td>" . $value->parent->name. "</td><td><a href='app.php?deleteid=" . $value->id. "'>Supprimer</a></td></tr>";
+      echo "<tr><td>" . $value->name. "</td><td>" . $value->parent->name. "</td><td><a href=''>Supprimer</a></td></tr>";
    }
    ?>
       </tbody>
 
    </table>
 
-
-   <hr>
-
-   <div id="Preview">
-   </div>
-   <ul id="Menu"></ul>
   
 <?php
 
