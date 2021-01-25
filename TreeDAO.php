@@ -154,6 +154,45 @@ class TreeDAO
         }*/
     }
 
+    public function getSubNodes($id)
+    {
+  //$sql = "SELECT t1.name pname, t2.name cname FROM Tree t1 inner join Tree t2 on t1.id=t2.tree_parent";
+        if($id==NULL)
+  $sql = "SELECT id cid, name cname, treeId ctreeId, isquestion cisquestion, node cnode  FROM trees where treeId is null";
+  else
+  $sql="SELECT t1.node cnode, t1.id cid, t1.isquestion cisquestion, t1.name cname, t2.id pid, t2.name pname FROM trees t1 left join trees t2 on t1.treeId=t2.id where t1.treeId=".$id." order by t1.node asc ";
+
+  $stm = $this->con->prepare($sql);
+
+  try {
+      $stm->execute();
+  } catch (PDOException $e) {
+      echo $e->getMessage();
+  }
+
+  //return true or false
+  $result = $stm->setFetchMode(PDO::FETCH_ASSOC);
+  $arbres = [];
+  if ($result) {
+      $data = $stm->fetchAll();
+      $output = array();
+ 
+      foreach ($data as $value) {
+          
+          $tree = new Tree($value['cid'], $value['cname']);
+          $tree->setnode($value['cnode']); 
+          $parent = new Tree($value['pid'], $value['pname']);
+          $tree->setParent($parent);
+  
+          $tree->setIsQuestion($value['cisquestion']);
+
+          array_push($output, $tree);
+      }
+
+      return $output;
+    }
+}
+
 
     public function deleteByID($id)
     {

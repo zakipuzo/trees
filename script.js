@@ -1,8 +1,11 @@
 
-
-
-
 $(document).ready(function () {
+  
+
+$("#Result table tr").click(function(){
+let id=$("#Result table tbody tr").attr("id");
+location.href="tableaux.php?id="+id;
+})
 
   $("#parent").select2();
 
@@ -13,6 +16,22 @@ $(document).ready(function () {
   });
 
   $('#example').DataTable({
+
+    responsive: true,
+    paging: true,
+    searching: true,
+    select: true,
+    ordering: false,
+    language: {
+      processing: "Traitement en cours...",
+      search: "Rechercher&nbsp;:",
+      lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+      info: "Total: _TOTAL_ ",
+
+    }
+  });
+
+  $('#example2').DataTable({
 
     responsive: true,
     paging: false,
@@ -27,6 +46,7 @@ $(document).ready(function () {
 
     }
   });
+
 
 
   $.ajax({
@@ -248,6 +268,9 @@ $(document).ready(function () {
 item.append(subListX);
   }
 */
+
+
+
   
 
 });

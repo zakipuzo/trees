@@ -9,7 +9,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css">
-  
+   <link rel="stylesheet" href="style.css">
 </head>
 <style>
 
@@ -76,6 +76,9 @@ ul, .myUL {
     </li> 
     <li class="nav-item">
       <a class="nav-link" href="addtree.php">+Nouveau</a>
+    </li> 
+    <li class="nav-item">
+      <a class="nav-link" href="tableaux.php">Tableaux</a>
     </li> 
     <li class="nav-item">
       <a class="nav-link" href="manage.php">Gérer</a>
