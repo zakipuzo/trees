@@ -79,12 +79,18 @@ class TreeDAO
 
     public function findById($id)
     {
-        $sql = "SELECT t1.id id, t1.name, t2.id cid, t2.name cname  from trees where id=" . $id;
+        $sql = "SELECT t1.id id, t1.name, t2.id cid, t2.name cname  from trees t1 left join trees t2 on t1.treeId=t2.id where t1.id=" . $id;
 
         $stm = $this->con->prepare($sql);
-
+        
         try {
             $stm->execute();
+            $data = $stm->fetchAll();
+            if ($data) {
+                return $data;
+            } else {
+                echo "nothing";
+            }
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

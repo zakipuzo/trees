@@ -11,10 +11,24 @@ include("header.php");
 
 
 
+<div class="row">
+<div class="col-md-4">
+<div id="nodelist">
 
-
-   <div id="Preview">
    </div>
+</div>
+<div class="col-md-8">
+dsds
+<div id="nodesetting">
+
+   </div>
+</div>
+</div>
+
+</div>
+
+
+   
   
    <?php
       

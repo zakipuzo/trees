@@ -17,51 +17,11 @@
 overflow-x: scroll;
 }
 </style>
-<!--
-<style>
-
-ul, .myUL {
-  list-style-type: none;
-}
-
-.myUL {
-  margin: 0;
-  padding: 0;
-}
-
-.caret {
-  cursor: pointer;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none;
-}
-
-.caret::before {
-  content: "\25B6";
-  color: black;
-  display: inline-block;
-  margin-right: 6px;
-}
-
-.caret-down::before {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari */
-  transform: rotate(90deg);  
-}
-
-.nested {
-  display: none;
-}
-
-.active {
-  display: block;
-}
-</style>-->
+ 
 
 <body>
 
-<div class="container">
+<div class="container-fluid">
 
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -92,5 +52,5 @@ ul, .myUL {
 </nav>
 </div>
 
-<div class="container pt-5">
+<div class="container-fluid pt-5">
 
